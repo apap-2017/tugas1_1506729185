@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tambah Penduduk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<style>
+    	.form {
+    		margin:0 auto;
+    	}
+    </style>
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SI Kependudukan</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>		
+			</button>		
+					
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="/penduduk/ubah">Update Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/ubah">Update Keluarga</a>
+					</li> -->
+				</ul>
+			</div>
+		</nav>
+	
+	<center>
+	<h1 class="page-header">Tambah Penduduk</h1>
+	</center>
+	
+	<div class="container">
+	<div class="form col-lg-8">
+	<form action="/penduduk/tambah" method="post">
+		<div class="form group">
+			<label for="nama" >Nama :</label> <input class="form-control" placeholder="Masukkan Nama" type="text" name="nama" />
+		</div>
+		<div class="form group">
+			<label for="tempat_lahir">Tempat Lahir :</label> <input class="form-control" placeholder="Masukkan Tempat Lahir" type="text" name="tempat_lahir" />
+		</div>
+		<div class="form group">
+			<label for="tanggal_lahir">Tanggal Lahir :</label> <input class="form-control" placeholder="Masukkan Tanggal Lahir" type="date" name="tanggal_lahir" />
+		</div>
+		<div class="form group">
+			<label for="jenis_kelamin">Jenis Kelamin (0 = Pria, 1 = Wanita) :</label> <input class="form-control" placeholder="Masukkan Jenis Kelamin" type="number" name="jenis_kelamin" min="0" max="1" />
+		</div>
+		<div class="form group">
+			<label for="is_wni">Kewarganegaraan (0 = WNA, 1 = WNI) :</label> <input class="form-control" placeholder="Masukkan Kewarganegaraan" type="number" name="is_wni" min="0" max="1" />
+		</div>
+		<div class="form group">
+			<label for="id_keluarga">Id Keluarga :</label> <input class="form-control" placeholder="Masukkan Id Keluarga Anda" type="text" name="id_keluarga" />
+		</div>
+		<div class="form group">
+			<label for="agama">Agama :</label> <input class="form-control" placeholder="Masukkan Agama" type="text" name="agama" />
+		</div>
+		<div class="form group">
+			<label for="pekerjaan">Pekerjaan :</label> <input class="form-control" placeholder="Masukkan Pekerjaan" type="text" name="pekerjaan" />
+		</div>
+		<div class="form group">
+			<label for="status_perkawinan">Status Perkawinan :</label> <input class="form-control" placeholder="Masukkan Status Perkawinan" type="text" name="status_perkawinan" />
+		</div>
+		<div class="form group">
+			<label for="status_dalam_keluarga">Status Dalam Keluarga :</label> <input class="form-control" placeholder="Masukkan Status Dalam Keluarga" type="text" name="status_dalam_keluarga" />
+		</div>
+		<div class="form group">
+			<label for="golongan_darah">Golongan Darah :</label> <input class="form-control" placeholder="Masukkan Golongan Darah" type="text" name="golongan_darah" />
+		</div>
+		<div class="form group">
+			<label for="is_wafat">Status Kematian (0 = Wafat, 1 = Hidup) :</label> <input class="form-control" placeholder="Masukkan Status Kematian" type="number" name="is_wafat" min="0" max="1" />
+		</div>
+		<!-- <div class="form group">
+			<label for="nama" >Nama :</label> <input class="form-control" placeholder="Masukkan Nama" type="text" name="nama" />
+		</div>
+		<div class="form group">
+			<label for="tempat_lahir">Tempat Lahir :</label> <input class="form-control" placeholder="Masukkan Tempat Lahir" type="text" name="tempat_lahir" />
+		</div>
+		<div class="form group">
+			<label for="tanggal_lahir">Tanggal Lahir :</label> <input class="form-control" placeholder="Masukkan Tanggal Lahir" type="date" name="tanggal_lahir" />
+		</div>
+		<div class="form-group">
+          <label for="inputJenisKelamin">Jenis Kelamin</label>
+            <select class="form-control" id="inputJenisKelamin" >
+             <option value="0">Laki-laki</option>
+             <option value="1">Perempuan</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputStatusDalamKeluarga">Status Dalam Keluarga</label>
+            <select class="form-control" id="inputStatusDalamKeluarga" >
+             <option value="Anak">Anak</option>
+             <option value="Istri">Istri</option>
+             <option value="Famili Lain">Famili Lain</option>
+             <option value="Kepala Keluarga">Kepala Keluarga</option>
+             <option value="Pembantu">Pembantu</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputGolonganDarah">Golongan Darah</label>
+            <select class="form-control" id="inputGolonganDarah" >
+             <option value="A+">A+</option>
+             <option value="A-">A-</option>
+             <option value="B+">B+</option>
+             <option value="B-">B-</option>
+             <option value="AB+">AB+</option>
+             <option value="AB-">AB-</option>
+             <option value="O+">O+</option>
+             <option value="O-">O-</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputAgama">Agama</label>
+            <select class="form-control" id="inputAgama" >
+             <option value="Islam">Islam</option>
+             <option value="Kristen Protestan">Kristen Protestan</option>
+             <option value="Kristen Katolik">Kristen Katolik</option>
+             <option value="Hindu">Hindu</option>
+             <option value="Buddha">Buddha</option>
+             <option value="Konghucu">Konghucu</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputStatusPerkawinan">Status Perkawinan</label>
+            <select class="form-control" id="inputStatusPerkawinan" >
+             <option value="Belum Kawin">Belum Kawin</option>
+             <option value="Kawin">Kawin</option>
+             <option value="Cerai Hidup">Cerai Hidup</option>
+             <option value="Cerai Mati">Cerai Mati</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputPekerjaan">Pekerjaan</label>
+            <input type="text" class="form-control" id="inputPekerjaan"></input>
+        </div>
+        <div class="form-group">
+          <label for="inputKewarganegaraan">Kewarganegaraan</label>
+            <select class="form-control" id="inputKewarganegaraan">
+             <option value="1">WNI</option>
+             <option value="0">WNA</option>
+         </select></div>
+        <div class="form-group">
+          <label for="inputStatusKematian">Status Kematian</label>
+            <select class="form-control" id="inputStatusKematian">
+             <option value="0">Hidup</option>
+             <option value="1">Mati</option>
+         </select>
+        </div>
+        <div class="form-group">
+          <label for="inputIdKeluarga">ID Keluarga</label>
+            <input type="text" class="form-control" id="inputIdKeluarga"></input>
+        </div> -->
+		<br/>
+		<div>
+			<button class="btn btn-primary" type="submit" name="action" value="simpan">Simpan</button>
+		</div>
+		<br/>
+	</form>
+	</div>
+	</div>
+
+</body>
+
+</html>
+

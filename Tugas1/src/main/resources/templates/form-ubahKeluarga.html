@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Ubah Keluarga</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<style>
+    	.form {
+    		margin:0 auto;
+    	}
+    </style>
+</head>
+
+<body>
+	
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SI Kependudukan</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>		
+			</button>		
+					
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="/penduduk/ubah">Update Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/ubah">Update Keluarga</a>
+					</li> -->
+				</ul>
+			</div>
+		</nav>
+	
+	<center>
+	<h1 class="page-header">Ubah Keluarga</h1>
+	</center>
+	
+	<div class="container">
+	<div class="form col-lg-8">
+	<form class="inputAction" th:object="${keluarga}" action="/keluarga/ubah" method="post">
+		<input type="hidden" readonly="true" name="nomor_kk" th:value="${nomor_kk}"></input>
+		<!-- <input type="hidden" readonly="true" name="id_kecamatan_lama" th:value="${keluarga.id_kecamatan}"></input> -->
+		<input type="hidden" readonly="true" name="id_kelurahan_lama" th:value="${keluarga.id_kelurahan}"></input>
+		<input type="hidden" readonly="true" name="id" th:value="${keluarga.id}"></input>
+		<!-- <input type="hidden" readonly="true" name="id_kota_lama" th:value="${keluarga.id_kota}"></input> -->
+		<div class="form-group">
+			<label for="alamat" >Alamat :</label> <input class="form-control" placeholder="Masukkan Alamat" type="text" name="alamat" th:field="*{alamat}" th:value="${keluarga.alamat}" />
+		</div>
+		<div class="form-group">
+			<label for="rt">RT :</label> <input class="form-control" placeholder="Masukkan RT" type="text" name="rt" th:field="*{rt}" th:value="${keluarga.rt}"/>
+		</div>
+		<div class="form-group">
+			<label for="rw">RW :</label> <input class="form-control" placeholder="Masukkan RW" type="text" name="rw" th:field="*{rw}" th:value="${keluarga.rw}"/>
+		</div>
+		<div class="form-group">
+			<label for="nama_kelurahan">Kelurahan/Desa :</label> 
+			<select class="form-control" id="inputKelurahan" th:field="*{id_kelurahan}" name="id_kelurahan" th:value="${keluarga.id_kelurahan}">
+				<option th:each="kelurahans, iterationStatus : ${listKelurahan}" th:value="${kelurahans.id}" th:text="${kelurahans.nama_kelurahan}" th:selected="${kelurahans.id} == ${kelurahan.id} ? 'true' : 'false'"></option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="id_kecamatan">Kecamatan :</label>
+			<select class="form-control" id="inputKecamatan"> 
+				<option th:each="kecamatans, iterationStatus : ${listKecamatan}" th:value="${kecamatans.id}" th:text="${kecamatans.nama_kecamatan}" th:selected="${kecamatans.id} == ${kecamatan.id} ? 'true' : 'false'"></option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="id_kota">Kota :</label>
+			<select class="form-control" id="inputKota"> 
+				<option th:each="kotas, iterationStatus : ${listKota}" th:value="${kotas.id}" th:text="${kotas.nama_kota}" th:selected="${kotas.id} == ${kota.id} ? 'true' : 'false'"></option>
+			</select>
+		</div>
+		<br/>
+		<div>
+			<button class="btn btn-primary" type="submit" name="action" value="simpan">Simpan</button>
+		</div>
+	</form>
+	</div>
+	</div>
+</body>
+
+</html>

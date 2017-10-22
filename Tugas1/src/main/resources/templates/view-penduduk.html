@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View Penduduk</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="/js/datatables.min.js"></script>
+ 		<!-- <script>
+ 			var auto_refresh = setInterval(function()
+ 			{
+ 				submitform();
+ 			}, 0000);
+ 			//Form submit function
+ 			function submitform() {
+ 				document.getElementById("form").submit();
+ 			}
+ 		</script> -->
+        <style>
+        	.data {
+        		margin:0 auto;
+        	}
+        </style>
+    </head>
+    <body>
+    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SI Kependudukan</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>		
+			</button>		
+					
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="/penduduk/ubah">Update Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/ubah">Update Keluarga</a>
+					</li> -->
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="container">
+    	<div class="data col-lg-6 text-center">
+    	<h4 th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}"></h4>
+       	<h5 th:text="'NIK = ' + ${penduduk.nik}">Nik penduduk</h5>
+       	<h5 th:text="'Nama = ' + ${penduduk.nama}">Nama penduduk</h5>
+       	<h5 th:text="'Tempat/Tanggal Lahir = ' + ${penduduk.tempat_lahir} + ', ' + ${penduduk.tanggal_lahir}">TTL penduduk</h5>
+       	<h5 th:text="'Alamat = ' + ${keluarga.alamat}">Agama penduduk</h5>
+       	<h5 th:text="'RT/RW = ' + ${keluarga.rt} + '/' + ${keluarga.rw}">Agama penduduk</h5>
+       	<h5 th:text="'Kelurahan = ' + ${kelurahan.nama_kelurahan}">Agama penduduk</h5>
+       	<h5 th:text="'Kecamatan = ' + ${kecamatan.nama_kecamatan}">Agama penduduk</h5>
+       	<h5 th:text="'Kota = ' + ${kota.nama_kota}">Agama penduduk</h5>
+       	<h5 th:text="'Golongan darah = ' + ${penduduk.golongan_darah}">Golongan darah penduduk</h5>
+       	<h5 th:text="'Agama = ' + ${penduduk.agama}">Agama penduduk</h5>
+       	<h5 th:text="'Status Perkawinan = ' + ${penduduk.status_perkawinan}">Status perkawinan penduduk</h5>
+       	<h5 th:text="'Pekerjaan = ' + ${penduduk.pekerjaan}">Pekerjaan Penduduk</h5>
+       	<h5 th:text="${penduduk.is_wni} == 0 ? 'Kewarganegaraan = WNA' : 'Kewarganegaraan = WNI'">Kewarganegaraan</h5>
+       	<h5 th:text="${penduduk.is_wafat} == 0 ? 'Status Kematian = Hidup' : 'Status Kematian = Mati'">Status Kematian</h5>
+       	<!-- <h5 th:if="${penduduk.is_wni=1}">Kewarganegaraan = WNI</h5>
+       	<h5 th:unless="${penduduk.is_wni=1}">Kewarganegaraan = WNA</h5>
+       	<h5 th:if="${penduduk.is_wafat=1}">Status kematian = Mati</h5>
+       	<h5 th:unless="${penduduk.is_wafat=1}">Status kematian = Hidup</h5> -->
+       	</div>
+       	</div>
+       	<br/>
+       	<center>
+	    <div class="container-fluid">
+	        <form id="form" method="post" th:action="'/penduduk/mati'">
+	            <input type="hidden" name="nik" th:value="${penduduk.nik}" />
+	            <button type="submit" class="btn btn-danger">Nonaktifkan</button>
+	        </form>
+	    </div>
+		<br/>
+	    <div class="container-fluid">
+	        <form method="get" th:action="'/keluarga'">
+	            <input type="hidden" name="nomor_kk" th:value="${keluarga.nomor_kk}" />
+	            <button type="submit" class="btn btn-primary">Lihat Keluarga</button>
+	        </form>
+	    </div>
+       	<br/>
+       	<div class="container-fluid">
+	        <form method="get" th:action="'/penduduk/ubah/' + ${penduduk.nik}">
+	            <!-- <input type="hidden" name="nik" th:value="${penduduk.nik}" /> -->
+	            <button type="submit" class="btn btn-warning">Ubah Data Penduduk</button>
+	        </form>
+	    </div>
+	    </center>
+    </body>
+</html>

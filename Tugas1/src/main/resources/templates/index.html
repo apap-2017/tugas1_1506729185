@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title>Sistem Informasi Kependudukan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		
+		<style>
+        	.form {
+        		margin:0 auto;
+        	}
+        </style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">SI Kependudukan</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>		
+		</button>		
+				
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/cari">Cari Data</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link" href="/penduduk/ubah/{penduduk.nik}">Update Penduduk</a>
+					"'/penduduk?nik=' + ${termuda.nik}" th:text="${termuda.nik}"
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/keluarga/ubah/{keluarga.nomor_kk}">Update Keluarga</a>
+				</li> -->
+			</ul>
+		</div>
+		</nav>
+		
+		<center>
+			<h1>Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</h1>
+			<h4>Selamat datang di Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</h4>
+		</center>
+		
+		<hr/>
+		
+		<div class="col-sm-4 text-center form">
+		<form action="/penduduk" method="get">
+                <div class="form-group">
+                	<h3>Lihat Data Penduduk Berdasarkan NIK</h3>
+                    <label for="nik">Masukkan Nomor Induk Kependudukan</label>
+                    <input type="text" class="form-control" name="nik"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Lihat</button>
+        </form>
+        </div>
+        
+        <hr/>
+        
+        <div class="col-sm-4 text-center form">
+        <form action="/keluarga" method="get">
+                <div class="form-group">
+                	<h3>Lihat Data Keluarga Berdasarkan NKK</h3>
+                    <label for="nomor_kk">Masukkan Nomor Kartu Keluarga</label>
+                    <input type="text" class="form-control" name="nomor_kk"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Lihat</button>
+        </form>
+        </div>
+	</body>
+</html>
